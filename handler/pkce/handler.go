@@ -169,7 +169,7 @@ func (c *Handler) HandleTokenEndpointRequest(ctx context.Context, request fosite
 	fmt.Printf(verifier);
 	fmt.Printf("ENV PKCE");
 	
-	if !c.Force && challenge == "" && verifier == "" {
+	if !c.Force && verifier == "" {
 		return nil
 	}
 
