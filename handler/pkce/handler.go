@@ -158,7 +158,16 @@ func (c *Handler) HandleTokenEndpointRequest(ctx context.Context, request fosite
 	if err := c.validate(challenge, method, client); err != nil {
 		return err
 	}
-
+	
+	fmt.Printf("START PKCE");
+	fmt.Printf("Force");
+	fmt.PrintLn(c.Force);
+	fmt.Printf("CHALLENGE");
+	fmt.Printf(challenge);
+	fmt.Printf("VERIFIER");
+	fmt.Printf(verifier);
+	fmt.Printf("ENV PKCE");
+	
 	if !c.Force && challenge == "" && verifier == "" {
 		return nil
 	}
