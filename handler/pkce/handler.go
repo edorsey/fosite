@@ -162,7 +162,7 @@ func (c *Handler) HandleTokenEndpointRequest(ctx context.Context, request fosite
 	
 	fmt.Printf("START PKCE");
 	fmt.Printf("Force");
-	fmt.PrintLn(c.Force);
+	fmt.Printf(c.Force);
 	fmt.Printf("CHALLENGE");
 	fmt.Printf(challenge);
 	fmt.Printf("VERIFIER");
