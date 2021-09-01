@@ -228,8 +228,17 @@ func (f *Fosite) DefaultClientAuthenticationStrategy(ctx context.Context, r *htt
 	if err != nil {
 		return nil, errorsx.WithStack(ErrInvalidClient.WithWrap(err).WithDebug(err.Error()))
 	}
-
-	if oidcClient, ok := client.(OpenIDConnectClient); !ok {
+	
+	oidcClient, ok := client.(OpenIDConnectClient);
+	
+	fmt.Printf("OIDC CLIENT");
+	fmt.Printf(oidcClient.GetTokenEndpointAuthMethod());
+	fmt.Printf("FORM CLIENT ID");
+	fmt.Printf(form.Get("client_id"));
+	fmt.Printf("FORM CLIENT SECRET");
+	fmt.Printf(form.Get("client_secret"));
+	
+	if !ok {
 		// If this isn't an OpenID Connect client then we actually don't care about any of this, just continue!
 	} else if ok && form.Get("client_id") != "" && form.Get("client_secret") != "" && oidcClient.GetTokenEndpointAuthMethod() != "client_secret_post" {
 		return nil, errorsx.WithStack(ErrInvalidClient.WithHintf("The OAuth 2.0 Client supports client authentication method '%s', but method 'client_secret_post' was requested. You must configure the OAuth 2.0 client's 'token_endpoint_auth_method' value to accept 'client_secret_post'.", oidcClient.GetTokenEndpointAuthMethod()))
