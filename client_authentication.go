@@ -231,12 +231,14 @@ func (f *Fosite) DefaultClientAuthenticationStrategy(ctx context.Context, r *htt
 	
 	oidcClient, ok := client.(OpenIDConnectClient);
 	
+	fmt.Printf("START CLIENT AUTH");
 	fmt.Printf("OIDC CLIENT");
 	fmt.Printf(oidcClient.GetTokenEndpointAuthMethod());
 	fmt.Printf("FORM CLIENT ID");
 	fmt.Printf(form.Get("client_id"));
 	fmt.Printf("FORM CLIENT SECRET");
 	fmt.Printf(form.Get("client_secret"));
+	fmt.Printf("END CLIENT AUTH");
 	
 	if !ok {
 		// If this isn't an OpenID Connect client then we actually don't care about any of this, just continue!
