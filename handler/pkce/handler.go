@@ -25,6 +25,7 @@ import (
 	"context"
 	"crypto/sha256"
 	"encoding/base64"
+	"fmt"
 	"regexp"
 
 	"github.com/ory/x/errorsx"
